@@ -1,0 +1,25 @@
+### APP levantada
+GET http://localhost:3000/
+
+#################
+### Inmuebles ###
+#################
+### GET
+GET http://localhost:3000/api/inmuebles
+
+### POST
+POST http://localhost:3000/api/inmuebles
+Content-Type: application/json
+
+{
+}
+
+### PUT
+PUT http://localhost:3000/api/inmuebles/1
+Content-Type: application/json
+
+{
+}
+
+### DELETE
+DELETE http://localhost:3000/api/inmuebles/1
