@@ -12,10 +12,10 @@ POST http://localhost:3000/api/inmuebles
 Content-Type: application/json
 
 {
-    "piso": 200,
-    "letra": "d",
+    "piso": "20",
+    "letra": "D",
     "extension": "75",
-    "habitaciones": 2,
+    "habitaciones": "2",
     "alquilado": false,
     "propietario": " Mario Rodríguez",
     "email": "mario@unir.net"
@@ -31,4 +31,4 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:3000/api/inmuebles/636aa3bcacac3f6ffaa5e442
+DELETE http://localhost:3000/api/inmuebles/636ad542718ba786e34fe183

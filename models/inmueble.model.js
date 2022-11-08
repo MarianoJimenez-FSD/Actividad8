@@ -1,29 +1,30 @@
 const { Schema, model } = require('mongoose');
+const { getErrorFieldStr, ErrorType } = require('../helpers/errormsg_utils');
 
 const InmuebleSchema = new Schema({
     piso: {
         type: Number,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'piso')],
         validate: {
             validator: Number.isInteger,
-            message: '{VALUE} no es un entero válido'
+            message: getErrorFieldStr(ErrorType.ERROR_INT_FIELD, 'piso', '{VALUE}')
         },
-        min: [0, 'El menor piso válido es 0 (bajo)'],
-        max: [200, 'El piso más alto válido es 200']
+        min: [0,   getErrorFieldStr(ErrorType.ERROR_MIN_VALUE_FIELD, 'piso', '0 (bajo)')],
+        max: [200, getErrorFieldStr(ErrorType.ERROR_MAX_VALUE_FIELD, 'piso', '200')]
     },
     letra: {
         type: String,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'letra')],
         trim: true,
         uppercase: true,
-        maxlength: 1        
+        maxlength: [1, getErrorFieldStr(ErrorType.ERROR_MAX_LENGTH_FIELD, 'letra')]
     },
     extension: {
         type: Number,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'extension')],
         validate: {
             validator: Number.isInteger,
-            message: '{VALUE} no es un entero válido'
+            message: props => getErrorFieldStr(ErrorType.ERROR_INT_FIELD, 'extension', props.value)
         }
     },
     habitaciones: {
@@ -31,7 +32,7 @@ const InmuebleSchema = new Schema({
         required: true,
         validate: {
             validator: Number.isInteger,
-            message: '{VALUE} no es un entero válido'
+            message: getErrorFieldStr(ErrorType.ERROR_INT_FIELD, 'habitaciones', '{VALUE}')
         }
     },
     alquilado: {
@@ -47,9 +48,8 @@ const InmuebleSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, '{VALUE} no es un email válido']
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, getErrorFieldStr(ErrorType.ERROR_EMAIL_FIELD, '{VALUE}')]
     }
-
 });
 
 module.exports = model('inmueble', InmuebleSchema);
