@@ -1,6 +1,9 @@
 ### APP levantada
 GET http://localhost:3000/
 
+### Documentación del API
+GET http://localhost:3000/api-docs
+
 #################
 ### Inmuebles ###
 #################
