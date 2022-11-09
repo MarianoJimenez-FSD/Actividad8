@@ -25,7 +25,8 @@ const InmuebleSchema = new Schema({
         validate: {
             validator: Number.isInteger,
             message: props => getErrorFieldStr(ErrorType.ERROR_INT_FIELD, 'extension', props.value)
-        }
+        },
+        min: [0, getErrorFieldStr(ErrorType.ERROR_MIN_VALUE_FIELD, 'extension', '0')],
     },
     habitaciones: {
         type: Number,
