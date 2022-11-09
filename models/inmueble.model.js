@@ -29,24 +29,25 @@ const InmuebleSchema = new Schema({
     },
     habitaciones: {
         type: Number,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'habitaciones')],
         validate: {
             validator: Number.isInteger,
             message: getErrorFieldStr(ErrorType.ERROR_INT_FIELD, 'habitaciones', '{VALUE}')
-        }
+        },
+        min: [0, getErrorFieldStr(ErrorType.ERROR_MIN_VALUE_FIELD, 'habitaciones', '0')],
     },
     alquilado: {
         type: Boolean,
-        required: true
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'alquilado')]
     },
     propietario: {
         type: String,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'propietario')],
         trim: true
     },
     email: {
         type: String,
-        required: true,
+        required: [true, getErrorFieldStr(ErrorType.ERROR_MANDATORY_FIELD, 'email')],
         trim: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, getErrorFieldStr(ErrorType.ERROR_EMAIL_FIELD, '{VALUE}')]
     }
